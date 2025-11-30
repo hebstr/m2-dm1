@@ -28,7 +28,7 @@ library(gt)
 
 quiet <- TRUE
 
-source("scripts/_setup.R")
+source(here::here("scripts", "_setup.R"))
 
 auto_exec()
 
