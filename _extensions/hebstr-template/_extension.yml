@@ -35,8 +35,12 @@ contributes:
       code-fold: true
       code-copy: hover
       html-table-processing: none
-      theme: resources/style.scss
-      css: [resources/fonts.css, resources/code-dark.css]
+      theme:
+        - resources/style.scss
+        - resources/callout.scss
+        - resources/code.scss
+      css:
+        - resources/fonts.css
       lightbox: true
     typst:
       papersize: a4

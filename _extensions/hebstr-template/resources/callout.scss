@@ -1,0 +1,96 @@
+/*-- scss:defaults --*/
+
+$callout-icon-scale: -10% !default;
+$callout-note-color: #0099FF !default;
+$callout-tip-color: #3fb618 !default;
+$callout-caution-color: #f0ad4e !default;
+$callout-warning-color: #ff7518 !default;
+$callout-important-color: #FF0000 !default;
+
+/*-- scss:rules --*/
+
+div.callout-title-container {
+  font-size: 1rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+  padding-right: 1.3rem;
+}
+
+div.callout-body {
+  padding-right: 1.3rem;
+  color: $neutral;
+}
+
+.callout:not(.no-icon).callout-titled.callout-style-simple .callout-body {
+  padding-left: 1.75rem;
+}
+
+div.callout-note.callout {
+
+  border: 2px solid lighten($callout-note-color, 40%);
+  border-left: 5px solid lighten($callout-note-color, 10%);
+  background-color: lighten($callout-note-color, 49%);
+
+  .callout-body {
+    color: darken($callout-note-color, 20%);
+  }
+
+}
+
+div.callout-note.callout-titled .callout-header {
+  color: $callout-note-color;
+}
+
+div.callout-important.callout {
+  border: 2px solid lighten($callout-important-color, 38%);
+  border-left: 5px solid $callout-important-color;
+  background-color: lighten($callout-important-color, 49%);
+
+  .callout-body {
+    color: darken($callout-important-color, 15%);
+  }
+}
+
+div.callout-important.callout-titled .callout-header {
+  color: $callout-important-color;
+}
+
+div.callout-tip.callout {
+
+  border: 2px solid lighten($callout-tip-color, 45%);
+  border-left: 5px solid lighten($callout-tip-color, 5%);
+  background-color: lighten($callout-tip-color, 57%);
+
+  .callout-body {
+    color: darken($callout-tip-color, 5%);
+  }
+
+}
+
+div.callout-tip.callout-titled .callout-header {
+  color: $callout-tip-color;
+}
+
+div.callout-caution.callout {
+  background-color: lighten($callout-caution-color, 33%);
+}
+
+div.callout-caution.callout-titled .callout-header {
+  color: darken($callout-caution-color, 20%);
+}
+
+div.callout-warning.callout {
+  background-color: lighten($callout-warning-color, 41%);
+}
+
+div.callout-warning.callout-titled .callout-header {
+  color: darken($callout-warning-color, 10%);
+}
+
+.callout.callout-style-simple .callout-icon::before,
+.callout.callout-style-simple .callout-toggle::before {
+  height: 1.2rem;
+  width: 1.2rem;
+  background-size: 1.2rem;
+  margin-top: 0.3rem;
+}

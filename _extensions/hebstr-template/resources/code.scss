@@ -1,0 +1,134 @@
+/*-- scss:defaults --*/
+
+$code-background-color: #1e0e26 !default;
+$code-foreground-color: #ffffff !default;
+$code-comment-color: #9827d1ff !default;
+
+/*-- scss:rules --*/
+
+div[data-code-filename] summary {
+  font-family: $font-family-monospace !important;
+  font-weight: 500 !important;
+  color: $code-foreground-color !important;
+  background-color: #341646 !important;
+  margin-bottom: 0 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 10px !important;
+  border-bottom: 0 !important;
+}
+
+div[data-code-filename] details[open] summary {
+  background-color: #14091b !important;
+  color: $code-foreground-color !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+div[data-code-filename] details div.sourceCode {
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+code.sourceCode, pre code {
+  font-family: $font-family-monospace;
+  font-weight: 500;
+}
+
+code {
+  font-family: $font-family-monospace;
+  font-size: $font-size-root - 1;
+  font-weight: 500;
+  color: $primary;
+}
+
+code a:any-link {
+  text-decoration: underline;
+  text-decoration-color: $line-color;
+}
+
+div.sourceCode {
+
+  background-color: $code-background-color !important;
+  color: $code-foreground-color;
+  border-top: 1px solid $code-background-color;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em 0;
+  font-weight: bold;
+  line-height: 1.4;
+
+  ::selection {
+    background-color: $code-comment-color;
+    color: $code-foreground-color;
+  }
+
+}
+
+code span.va {
+  color: $code-foreground-color;
+}
+
+code span.dv,
+code span.fl {
+  color: #ff7869;
+}
+
+code span.cn {
+  color: #ffbc6a;
+  font-weight: bold;
+}
+
+code span.st,
+code span.ss {
+  color: #c5ff93;
+}
+
+code span.op,
+code span.ot,
+code span.sc {
+  color: #a2fff6;
+  font-weight: normal;
+}
+
+code span.kw,
+code span.cf,
+code span.im {
+  color: #d08aff;
+  font-weight: bold;
+}
+
+code span.fu,
+code span.bu {
+  color: #a2fff6;
+}
+
+code span.co,
+code span.do {
+  font-style: normal !important;
+  color: $code-comment-color;
+}
+
+code span.at {
+  color: $code-foreground-color;
+}
+
+.code-copy-button,
+.code-copy-button:hover {
+  background-color: #341646;
+  border-radius: 6px;
+}
+
+pre > code.sourceCode > span {
+  background-color: $code-background-color;
+  color: $code-foreground-color;
+}
+
+pre > code.sourceCode > span > a {
+  color: $code-comment-color;
+}
+
+pre code:not(.sourceCode) {
+  background-color: $code-background-color;
+  color: $code-comment-color;
+  padding : 1rem;
+}

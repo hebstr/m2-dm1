@@ -114,10 +114,11 @@ On dénombrait **3 variables qualitatives**.
 #| out-width: 85%
 #| fig-cap: !expr '.title_ql'
 
-.title_ql <-
-str_fig(title = "Caractéristiques des variables qualitatives.",
-        acro = .acro(opts$data$ql$vars),
-        qmd = TRUE)
+.title_ql <- str_fig(
+  title = "Caractéristiques des variables qualitatives.",
+  acro = .acro(opts$data$ql$vars),
+  qmd = TRUE
+)
 
 include_graphics("output/fig_ql.png")
 ```
@@ -152,13 +153,15 @@ La normalité de ces variables pouvait être évaluée de manière très approxi
 #| lightbox:
 #|   group: fig-qt
 
-.title_qq <-
-str_fig(title = "Diagrammes Q-Q.",
-        note =
-          glue("Distribution {str_color('théorique', .pal[1])} en abscisses,
-               distribution {str_color('observée', .pal[2])} en ordonnées."),
-        acro = .acro(opts$data$qt$vars$total),
-        qmd = TRUE)
+.title_qq <- str_fig(
+  title = "Diagrammes Q-Q.",
+  note = glue(
+    "Distribution {str_color('théorique', .pal[1])} en abscisses,
+    distribution {str_color('observée', .pal[2])} en ordonnées."
+  ),
+  acro = .acro(opts$data$qt$vars$total),
+  qmd = TRUE
+)
 
 include_graphics("output/fig_qq.png")
 ```
@@ -184,15 +187,18 @@ Une stratification sur la variable `sexe` a été réalisée à titre exploratoi
 #| lightbox:
 #|   group: fig-qt
 
-.title_dty <-
-str_fig(title =
-          glue("Densité de fréquence des variables quantitatives chez les
-               {str_color('hommes', .pal[1])} et les {str_color('femmes', .pal[2])}."),
-        note =
-          glue("Les moyennes sont représentées par les traits en pointillés,
-               les médianes par les traits pleins."),
-        acro = .acro(opts$data$qt$vars$total),
-        qmd = TRUE)
+.title_dty <- str_fig(
+  title = glue(
+    "Densité de fréquence des variables quantitatives chez les
+    {str_color('hommes', .pal[1])} et les {str_color('femmes', .pal[2])}."
+  ),
+  note = glue(
+    "Les moyennes sont représentées par les traits en pointillés,
+    les médianes par les traits pleins."
+  ),
+  acro = .acro(opts$data$qt$vars$total),
+  qmd = TRUE
+)
 
 include_graphics("output/fig_dty.png")
 ```
@@ -233,15 +239,19 @@ Par souci de légèreté on s'est focalisé sur les 3 corrélations qui apparais
 df |>
   correlate() |>
   stretch(remove.dups = TRUE) |>
-  mutate(r = round(r, 2),
-         p.value =
-           map2_dbl(x, y, ~ cor.test(df[[.x]], df[[.y]])$p.value) |>
-             style_pvalue()) |>
+  mutate(
+    r = round(r, 2),
+    p.value =
+      map2_dbl(x, y, ~ cor.test(df[[.x]], df[[.y]])$p.value) |>
+        style_pvalue()
+  ) |>
   arrange(desc(r)) |>
   head(n = 3) |>
   gt_qmd() |>
-  tab_style(style = cell_text(align = "right"),
-            locations = cells_body(p.value))
+  tab_style(
+    style = cell_text(align = "right"),
+    locations = cells_body(p.value)
+  )
 ```
 
 \
@@ -278,14 +288,16 @@ Les effectifs théoriques sont présentés ci-dessous :
 ```{r}
 #| echo: true
 
-.chisq <-
-lst(vars = combn(opts$data$ql$vars, 2),
-    expected =
-      map2(.x = vars[1, ] |> set_names(glue("{vars[1, ]}-{vars[2, ]}")),
-           .y = vars[2, ],
-           ~ chisq.test(df[[.x]], df[[.y]], correct = FALSE) |>
-             pluck("expected") |>
-             round(1)))
+.chisq <- lst(
+  vars = combn(opts$data$ql$vars, 2),
+  expected = map2(
+    .x = vars[1, ] |> set_names(glue("{vars[1, ]}-{vars[2, ]}")),
+    .y = vars[2, ],
+    ~ chisq.test(df[[.x]], df[[.y]], correct = FALSE) |>
+      pluck("expected") |>
+      round(1)
+  )
+)
 ```
 
 ```{r}
@@ -301,10 +313,11 @@ Les relations entre variables qualitatives et quantitatives étaient étudiées 
 -   Variables `tabac` et `vitamine` : test de **Kruskal-Wallis** (on comparait des médianes sur une variable qualitative ayant plus de 2 modalités, échantillons indépendants).
 
 ```{r}
-.title_bv <-
-list(sexe = "du sexe.",
-     tabac = "du tabagisme.",
-     vitamine = "de l'apport journalier en vitamines.") |>
+.title_bv <- list(
+  sexe = "du sexe.",
+  tabac = "du tabagisme.",
+  vitamine = "de l'apport journalier en vitamines."
+) |>
   map(~ glue("Caractéristiques des variables en fonction {.}"))
 ```
 
