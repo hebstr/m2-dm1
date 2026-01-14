@@ -1,24 +1,3 @@
----
-title: "DM1 : Statistiques de base"
-
-subtitle: "M2MSR 2023-2024"
-
-author:
-  name: "**Groupe 11** - Julien ELICES-DIEZ"
-  email: "ju.diez@protonmail.com"
-
-date: last-modified
-
-filters:
-  - add-code-files
-
-format:
-  hebstr-template-html:
-    code-tools:
-      source: https://codeberg.org/hebstr/m2_dm1/src/branch/main/
-  hebstr-template-typst: default
----
-
 ```{r}
 #| label: setup
 #| include: false
@@ -77,6 +56,11 @@ Aucun large language model n'est utilisé pour la rédaction du code ou du texte
 
 ::: callout-important
 # Le contenu de ce devoir n'est pas corrigé
+:::
+
+::: {add-from=.Rprofile code-line-numbers="true" code-filename=".Rprofile"}
+```r
+```
 :::
 
 ::: {add-from=scripts/_setup.R code-line-numbers="true" code-filename="_setup.R"}
@@ -298,9 +282,7 @@ Les effectifs théoriques sont présentés ci-dessous :
       round(1)
   )
 )
-```
 
-```{r}
 .chisq
 ```
 

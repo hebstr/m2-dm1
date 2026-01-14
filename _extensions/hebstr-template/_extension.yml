@@ -35,13 +35,14 @@ contributes:
       code-fold: true
       code-copy: hover
       html-table-processing: none
-      theme:
-        - resources/style.scss
-        - resources/callout.scss
-        - resources/code.scss
-      css:
-        - resources/fonts.css
+      theme: theme.scss
+      css: resources/fonts.css
       lightbox: true
+      grid:
+        sidebar-width: 0px
+        body-width: 1100px
+        margin-width: 600px
+        gutter-width: 2rem
     typst:
       papersize: a4
       margin:
