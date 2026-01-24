@@ -1,7 +1,6 @@
-source("renv/activate.R")
+source("rv/scripts/rvr.R")
+source("rv/scripts/activate.R")
 source("~/.Rprofile")
-
-# renv::install("~/Documents/pro/r_pkg/pkg_hebstr/", prompt = F)
 
 library(tidyverse)
 library(rlang, warn.conflicts = FALSE)

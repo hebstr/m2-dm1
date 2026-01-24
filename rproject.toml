@@ -1,0 +1,18 @@
+[project]
+name = "m2_dm1"
+r_version = "4.5"
+
+repositories = [
+    { alias = "CRAN", url = "https://packagemanager.posit.co/cran/latest" },
+]
+
+dependencies = [
+    "tidyverse",
+    "corrr",
+    "patchwork",
+    "gtsummary",
+    "labelled",
+    { name = "hebstr", git = "https://codeberg.org/hebstr/hebstr", branch = "main" },
+    "here",
+    "devtools",
+]
