@@ -1,3 +1,22 @@
+---
+title: "DM1 : Statistiques de base"
+
+subtitle: "M2MSR 2023-2024"
+
+author:
+  name: "**Groupe 11** - Julien ELICES-DIEZ"
+  email: "ju.diez@protonmail.com"
+
+filters:
+  - add-code-files
+
+format:
+  hebstr-template-html:
+    code-tools:
+      source: https://codeberg.org/hebstr/m2_dm1/src/branch/main/
+  hebstr-template-typst: default
+---
+
 ```{r}
 #| label: setup
 #| include: false
@@ -7,22 +26,18 @@ library(gt)
 
 quiet <- TRUE
 
-source(here::here("scripts", "_setup.R"))
+source("scripts/_setup.R")
 
 auto_exec()
 
 .pal <- opts$palette
 
-.acro <- \(vars) {
-
-  acro_match(
-    x = df,
-    vars = vars,
-    acro_list = opts$acro,
-    acro_sep = opts$sep$ext
-  )
-
-}
+.acro <- \(vars) acro_match(
+  x = df,
+  vars = vars,
+  acro_list = opts$acro,
+  acro_sep = opts$sep$ext
+)
 ```
 
 # Énoncé {.unnumbered .unlisted}
@@ -139,7 +154,7 @@ La normalité de ces variables pouvait être évaluée de manière très approxi
 
 .title_qq <- str_fig(
   title = "Diagrammes Q-Q.",
-  note = glue(
+  note = str_glue(
     "Distribution {str_color('théorique', .pal[1])} en abscisses,
     distribution {str_color('observée', .pal[2])} en ordonnées."
   ),
@@ -172,11 +187,11 @@ Une stratification sur la variable `sexe` a été réalisée à titre exploratoi
 #|   group: fig-qt
 
 .title_dty <- str_fig(
-  title = glue(
+  title = str_glue(
     "Densité de fréquence des variables quantitatives chez les
     {str_color('hommes', .pal[1])} et les {str_color('femmes', .pal[2])}."
   ),
-  note = glue(
+  note = str_glue(
     "Les moyennes sont représentées par les traits en pointillés,
     les médianes par les traits pleins."
   ),
@@ -220,14 +235,14 @@ Par souci de légèreté on s'est focalisé sur les 3 corrélations qui apparais
 ```{r}
 #| echo: true
 
+.calc_p <- \(x, y) cor.test(df[[x]], df[[y]])$p.value
+
 df |>
   correlate() |>
   stretch(remove.dups = TRUE) |>
   mutate(
     r = round(r, 2),
-    p.value =
-      map2_dbl(x, y, ~ cor.test(df[[.x]], df[[.y]])$p.value) |>
-        style_pvalue()
+    p.value = map2_dbl(x, y, .calc_p) |> style_pvalue()
   ) |>
   arrange(desc(r)) |>
   head(n = 3) |>
@@ -275,7 +290,7 @@ Les effectifs théoriques sont présentés ci-dessous :
 .chisq <- lst(
   vars = combn(opts$data$ql$vars, 2),
   expected = map2(
-    .x = vars[1, ] |> set_names(glue("{vars[1, ]}-{vars[2, ]}")),
+    .x = vars[1, ] |> set_names(str_glue("{vars[1, ]}-{vars[2, ]}")),
     .y = vars[2, ],
     ~ chisq.test(df[[.x]], df[[.y]], correct = FALSE) |>
       pluck("expected") |>
@@ -300,7 +315,7 @@ Les relations entre variables qualitatives et quantitatives étaient étudiées 
   tabac = "du tabagisme.",
   vitamine = "de l'apport journalier en vitamines."
 ) |>
-  map(~ glue("Caractéristiques des variables en fonction {.}"))
+  map(~ str_glue("Caractéristiques des variables en fonction {.}"))
 ```
 
 ::: {add-from=scripts/tbl_bv.R code-line-numbers="true" code-filename="tbl_bv.R"}

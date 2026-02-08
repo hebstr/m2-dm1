@@ -70,13 +70,14 @@ set_opts(
     glm = glm(fun, family = binomial, data = data_glm)
   ),
   note = list(
-    n = \(x) {
-      glue("{nrow(x)} observations, dont {sum(!complete.cases(x))}
-           contenant au moins une valeur manquante.")
-    },
-    ajust =
-      glue("Ajustement sur tous les facteurs statistiquement
-           significatifs dans l'analyse univariée.")
+    n = \(x) str_glue(
+      "{nrow(x)} observations, dont {sum(!complete.cases(x))} contenant
+      au moins une valeur manquante."
+    ),
+    ajust = str_glue(
+      "Ajustement sur tous les facteurs statistiquement significatifs
+      dans l'analyse univariée."
+    )
   )
 )
 

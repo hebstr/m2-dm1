@@ -1,10 +1,14 @@
+set_fig_ql <- \(data, x) ggcount(
+  data = data,
+  var = x,
+  color = opts$palette[2],
+  size = 3,
+  nudge_y = 0.05
+)
+
 fig_ql <-
 opts$data$ql$vars |>
-  map(~ ggcount(data = df,
-                var = .,
-                color = opts$palette[2],
-                size = 3,
-                nudge_y = 0.05)) |>
+  map(~ set_fig_ql(df, .)) |>
   wrap_plots() +
   plot_layout(axis_titles = "collect_y")
 

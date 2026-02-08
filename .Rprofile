@@ -3,8 +3,6 @@ source("rv/scripts/activate.R")
 source("~/.Rprofile")
 
 library(tidyverse)
-library(rlang, warn.conflicts = FALSE)
-library(glue)
 library(labelled)
 library(corrr)
 library(gtsummary)
