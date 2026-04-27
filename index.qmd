@@ -78,7 +78,9 @@ Aucun large language model n'est utilisé pour la rédaction du code ou du texte
 Ci-dessous un aperçu du jeu de données `retinol.csv` :
 
 ```{r}
-read_csv2("data/retinol.csv") |> glimpse()
+#| echo: true
+#| code-fold: false
+glimpse(read_csv2("data/retinol.csv"))
 ```
 
 Il y avait **315 observations**, sans données manquantes. Sur les **14 variables**, **9** ont été sélectionnées et recodées de la manière suivante :
@@ -253,6 +255,7 @@ Les effectifs théoriques sont présentés ci-dessous :
 
 ```{r}
 #| echo: true
+#| code-fold: false
 .chisq <- lst(
   vars = combn(opts$data$ql$vars, 2),
   expected = map2(
@@ -451,6 +454,6 @@ Aucune interaction statistiquement significative au risque $\alpha$ = 5% n'a ét
 # Session {.unnumbered .unlisted}
 
 ```{r}
-#| code-fold: true
+#| echo: true
 devtools::session_info(pkgs = "attached")
 ```
