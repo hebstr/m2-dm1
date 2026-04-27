@@ -1,5 +1,4 @@
 set_fig_qq <- \(data, x) {
-
   ggplot(data) +
     aes(sample = .data[[x]]) +
     geom_qq_line(
@@ -16,13 +15,11 @@ set_fig_qq <- \(data, x) {
       y = "Valeur"
     ) +
     theme_bar(grid = FALSE)
-
 }
 
-fig_qq <-
-opts$data$qt$vars$total |>
+fig_qq <- opts$data$qt$vars$total |>
   map(~ set_fig_qq(df, .)) |>
   wrap_plots() +
   plot_layout(axis_titles = "collect_y")
 
-easy_out(fig_qq, size = c(5, 7.5))
+easy_out(fig_qq, width = 7.5)

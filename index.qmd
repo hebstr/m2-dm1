@@ -1,43 +1,37 @@
 ---
 title: "DM1 : Statistiques de base"
-
 subtitle: "M2MSR 2023-2024"
-
 author:
-  name: "**Groupe 11** - Julien ELICES-DIEZ"
+  name: "Groupe 11 - Julien ELICES-DIEZ"
   email: "ju.diez@protonmail.com"
-
-filters:
-  - add-code-files
-
+lang: fr 
 format:
-  hebstr-template-html:
+  hebstr-html:
     code-tools:
-      source: https://codeberg.org/hebstr/m2_dm1/src/branch/main/
-  hebstr-template-typst: default
+      source: https://github.com/hebstr/m2-dm1
 ---
 
 ```{r}
 #| label: setup
 #| include: false
-
 library(knitr)
 library(gt)
 
-quiet <- TRUE
+options(easy_out.quiet = TRUE)
 
 source("scripts/_setup.R")
-
 auto_exec()
 
 .pal <- opts$palette
 
-.acro <- \(vars) acro_match(
-  x = df,
-  vars = vars,
-  acro_list = opts$acro,
-  acro_sep = opts$sep$ext
-)
+.acro <- \(vars) {
+  acro_match(
+    x = df,
+    vars = vars,
+    acro_list = opts$acro,
+    acro_sep = opts$sep$ext
+  )
+}
 ```
 
 # Énoncé {.unnumbered .unlisted}
@@ -73,15 +67,9 @@ Aucun large language model n'est utilisé pour la rédaction du code ou du texte
 # Le contenu de ce devoir n'est pas corrigé
 :::
 
-::: {add-from=.Rprofile code-line-numbers="true" code-filename=".Rprofile"}
-```r
-```
-:::
+{{< script .Rprofile >}}
 
-::: {add-from=scripts/_setup.R code-line-numbers="true" code-filename="_setup.R"}
-```r
-```
-:::
+{{< script scripts/_setup.R >}}
 
 # Description des variables
 
@@ -103,16 +91,12 @@ easy_view(df)$output
 
 On dénombrait **3 variables qualitatives**.
 
-::: {add-from=scripts/fig_ql.R code-line-numbers="true" code-filename="fig_ql.R"}
-```r
-```
-:::
+{{< script scripts/fig_ql.R >}}
 
 ```{r}
 #| label: fig-ql
 #| out-width: 85%
 #| fig-cap: !expr '.title_ql'
-
 .title_ql <- str_fig(
   title = "Caractéristiques des variables qualitatives.",
   acro = .acro(opts$data$ql$vars),
@@ -126,24 +110,17 @@ include_graphics("output/fig_ql.png")
 
 On dénombrait **6 variables quantitatives**.
 
-::: {add-from=scripts/tbl_qt.R code-line-numbers="true" code-filename="tbl_qt.R"}
-```r
-```
-:::
+{{< script scripts/tbl_qt.R >}}
 
 ```{r}
 #| label: tbl-qt
 #| tbl-cap: Caractéristiques des variables quantitatives.
-
 tbl_qt
 ```
 
 La normalité de ces variables pouvait être évaluée de manière très approximative à l'aide de Q-Q plots.
 
-::: {add-from=scripts/fig_qq.R code-line-numbers="true" code-filename="fig_qq.R"}
-```r
-```
-:::
+{{< script scripts/fig_qq.R >}}
 
 ```{r}
 #| label: fig-qq
@@ -151,7 +128,6 @@ La normalité de ces variables pouvait être évaluée de manière très approxi
 #| fig-cap: !expr '.title_qq'
 #| lightbox:
 #|   group: fig-qt
-
 .title_qq <- str_fig(
   title = "Diagrammes Q-Q.",
   note = str_glue(
@@ -174,10 +150,7 @@ Au vu des Q-Q plots il n'était pas facile de conclure formellement à la normal
 Les variables quantitatives ont été décrites graphiquement à l'aide de leur fonction de densité.
 Une stratification sur la variable `sexe` a été réalisée à titre exploratoire.
 
-::: {add-from=scripts/fig_dty.R code-line-numbers="true" code-filename="fig_dty.R"}
-```r
-```
-:::
+{{< script scripts/fig_dty.R >}}
 
 ```{r}
 #| label: fig-dty
@@ -185,7 +158,6 @@ Une stratification sur la variable `sexe` a été réalisée à titre exploratoi
 #| fig-cap: !expr '.title_dty'
 #| lightbox:
 #|   group: fig-qt
-
 .title_dty <- str_fig(
   title = str_glue(
     "Densité de fréquence des variables quantitatives chez les
@@ -217,16 +189,12 @@ Aucune supposition n'a été faite sur la nature de cette valeur et il a été d
 
 Les relations entre variables quantitatives deux-à-deux pouvaient être étudiées avec le calcul du **coefficient de corrélation linéaire de Pearson**.
 
-::: {add-from=scripts/fig_corr.R code-line-numbers="true" code-filename="fig_corr.R"}
-```r
-```
-:::
+{{< script scripts/fig_corr.R >}}
 
 ```{r}
 #| label: fig-corr
 #| out-width: 60%
 #| fig-cap: Coefficients de corrélation de Pearson calculés entre chaque paire de variables quantitatives.
-
 include_graphics("output/fig_corr.png")
 ```
 
@@ -234,7 +202,6 @@ Par souci de légèreté on s'est focalisé sur les 3 corrélations qui apparais
 
 ```{r}
 #| echo: true
-
 .calc_p <- \(x, y) cor.test(df[[x]], df[[y]])$p.value
 
 df |>
@@ -286,7 +253,6 @@ Les effectifs théoriques sont présentés ci-dessous :
 
 ```{r}
 #| echo: true
-
 .chisq <- lst(
   vars = combn(opts$data$ql$vars, 2),
   expected = map2(
@@ -318,30 +284,24 @@ Les relations entre variables qualitatives et quantitatives étaient étudiées 
   map(~ str_glue("Caractéristiques des variables en fonction {.}"))
 ```
 
-::: {add-from=scripts/tbl_bv.R code-line-numbers="true" code-filename="tbl_bv.R"}
-```r
-```
-:::
+{{< script scripts/tbl_bv.R >}}
 
 ```{r}
 #| label: tbl-bv-sexe
 #| tbl-cap: !expr '.title_bv$sexe'
-
-tbl_bv.sexe
+tbl_bv$sexe
 ```
 
 ```{r}
 #| label: tbl-bv-tabac
 #| tbl-cap: !expr '.title_bv$tabac'
-
-tbl_bv.tabac
+tbl_bv$tabac
 ```
 
 ```{r}
 #| label: tbl-bv-vitamine
 #| tbl-cap: !expr '.title_bv$vitamine'
-
-tbl_bv.vitamine
+tbl_bv$vitamine
 ```
 
 ### Quali-Quali
@@ -407,15 +367,11 @@ Au total on avait alors 315-4 = **311 observations** sans données manquantes.
 
 Les résultats sont regroupées dans le tableau suivant.
 
-::: {add-from=scripts/tbl_lm.R code-line-numbers="true" code-filename="tbl_lm.R"}
-```r
-```
-:::
+{{< script scripts/tbl_lm.R >}}
 
 ```{r}
 #| label: tbl-lm
 #| tbl-cap: Modèles univariable et multivariable de régression linéaire expliquant la variation de la concentration plasmatique en rétinol (ng/mL).
-
 tbl_lm
 ```
 
@@ -466,15 +422,11 @@ De façon arbitraire, nous avons choisi d'inclure dans l'analyse multivariable l
 
 Les résultats sont regroupées dans le tableau suivant.
 
-::: {add-from=scripts/tbl_glm.R code-line-numbers="true" code-filename="tbl_glm.R"}
-```r
-```
-:::
+{{< script scripts/tbl_lm.R >}}
 
 ```{r}
 #| label: tbl-glm
 #| tbl-cap: Modèles univariable et multivariable de régression logistique expliquant une concentration plasmatique en rétinol ≥ 566 ng/mL.
-
 tbl_glm
 ```
 
@@ -492,8 +444,13 @@ Chez les individus de même âge et de même sexe, et à statut tabagique identi
 
 Aucune interaction statistiquement significative au risque $\alpha$ = 5% n'a été retrouvée entre les variables explicatives.
 
+\
+
+***
+
 # Session {.unnumbered .unlisted}
 
 ```{r}
+#| code-fold: true
 devtools::session_info(pkgs = "attached")
 ```

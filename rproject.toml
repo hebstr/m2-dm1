@@ -7,12 +7,16 @@ repositories = [
 ]
 
 dependencies = [
+    { name = "hebstr", git = "https://github.com/hebstr/hebstr", branch = "main" },
     "tidyverse",
     "corrr",
     "patchwork",
     "gtsummary",
     "labelled",
-    { name = "hebstr", git = "https://codeberg.org/hebstr/hebstr", branch = "main" },
     "here",
     "devtools",
+    "pak",
+    "rsvg",
+    "car",
+    "parameters",
 ]

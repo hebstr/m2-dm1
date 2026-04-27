@@ -1,14 +1,11 @@
 set_fig_dty <- \(data, x) {
-
   .stat <- \(x) {
-
     summarise(
       .data = df,
       median = median(.data[[x]], na.rm = TRUE),
       mean = mean(.data[[x]], na.rm = TRUE),
       .by = sexe
     )
-
   }
 
   ggplot(data) +
@@ -34,13 +31,11 @@ set_fig_dty <- \(data, x) {
     scale_color_manual(values = opts$palette) +
     scale_y_continuous(labels = scales::label_percent(suffix = "")) +
     theme_bar(grid = FALSE)
-
 }
 
-fig_dty <-
-opts$data$qt$vars$total |>
+fig_dty <- opts$data$qt$vars$total |>
   map(~ set_fig_dty(df, .)) |>
   wrap_plots() +
   plot_layout(axis_titles = "collect_y")
 
-easy_out(fig_dty, size = c(5, 7.5))
+easy_out(fig_dty, width = 7.5)

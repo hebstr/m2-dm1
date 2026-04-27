@@ -1,5 +1,5 @@
 .glm_models <- lst(
-  tbl_uvregression(
+  uv = tbl_uvregression(
     data = opts$model$data_glm,
     method = glm,
     method.args = list(family = binomial),
@@ -8,20 +8,17 @@
     pvalue_fun = opts$pvalue$format,
     hide_n = TRUE
   ),
-  tbl_regression(
+  mv = tbl_regression(
     x = opts$model$glm,
     exponentiate = TRUE,
     pvalue_fun = opts$pvalue$format
   )
 )
 
-.glm_models |>
+tbl_glm <- .glm_models |>
   map(
     ~ . |>
-      gtsum_format(
-        model_mv = opts$model$glm,
-        label_reference = opts$labs$reference
-      ) |>
+      gtsum_format(model_mv = opts$model$glm) |>
       add_global_p()
   ) |>
   tbl_merge(tab_spanner = str_glue("**{opts$labs$spanner}**")) %>%
@@ -32,5 +29,6 @@
     ),
     note_pvalue = str_glue("{opts$note$ajust} (régression linéaire)"),
     width = 650
-  ) |>
-  easy_out("tbl_glm")
+  )
+
+easy_out(tbl_glm)

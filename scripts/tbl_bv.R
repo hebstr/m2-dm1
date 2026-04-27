@@ -1,5 +1,4 @@
 set_tbl_bv <- \(data, x) {
-
   data |>
     use_vars() |>
     tbl_summary(
@@ -17,10 +16,10 @@ set_tbl_bv <- \(data, x) {
       note_global = opts$note$n(data),
       width = 950
     )
-
 }
 
-opts$data$ql$vars |>
+tbl_bv <- opts$data$ql$vars |>
   set_names() |>
-  map(~ set_tbl_bv(df, .)) |>
-  easy_out_map("tbl_bv")
+  map(~ set_tbl_bv(df, .))
+
+easy_out_map(tbl_bv)
