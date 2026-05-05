@@ -6,7 +6,7 @@ author:
   email: "ju.diez@protonmail.com"
 lang: fr 
 format:
-  hebstr-html:
+  hebstr-doc-html:
     code-tools:
       source: https://github.com/hebstr/m2-dm1
 ---
@@ -455,5 +455,5 @@ Aucune interaction statistiquement significative au risque $\alpha$ = 5% n'a ét
 
 ```{r}
 #| echo: true
-devtools::session_info(pkgs = "attached")
+sessioninfo::session_info(pkgs = "attached")
 ```
