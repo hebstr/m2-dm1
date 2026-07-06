@@ -1,5 +1,17 @@
 ### DF -------------------------------------------------------------------------
 
+.labels <- list(
+  age = "Âge, années",
+  sexe = "Sexe",
+  bmi = "BMI, kg/m2",
+  tabac = "Tabagisme",
+  alcool = "Alcool, verres/sem",
+  vitamine = "Vitamines, AJ",
+  cholesterol = "Cholestérol, AJ en mg/j",
+  retdiet = "Rétinol, AJ en μg/j",
+  retplasma = "Rétinol plasmatique, ng/mL"
+)
+
 df <- read_csv2("data/retinol.csv") |>
   select(
     age,
@@ -33,28 +45,12 @@ df <- read_csv2("data/retinol.csv") |>
       ) |>
       fct_rev()
   ) |>
-  set_variable_labels(
-    age = "Âge, années",
-    sexe = "Sexe",
-    bmi = "BMI, kg/m2",
-    tabac = "Tabagisme",
-    alcool = "Alcool, verres/sem",
-    vitamine = "Vitamines, AJ",
-    cholesterol = "Cholestérol, AJ en mg/j",
-    retdiet = "Rétinol, AJ en μg/j",
-    retplasma = "Rétinol plasmatique, ng/mL"
-  )
+  set_variable_labels(!!!.labels)
 
 ### OPTS -----------------------------------------------------------------------
 
 set_opts(
   data = easy_descr(df),
-  acro = acro(
-    n ~ "nombre d'évènements",
-    N ~ "nombre d'observations",
-    BMI ~ "indice de masse corporelle",
-    AJ ~ "apport journalier"
-  ),
   model = lst(
     data = df[-c(20, 62, 171, 296), ],
     data_glm = mutate(
@@ -87,8 +83,19 @@ set_opts(
       "Ajustement sur tous les facteurs statistiquement significatifs
       dans l'analyse univariée."
     )
-  )
+  ),
+  acro = acro(
+    n ~ "nombre d'évènements",
+    N ~ "nombre d'observations",
+    BMI ~ "indice de masse corporelle",
+    AJ ~ "apport journalier"
+  ),
+  font = "luciole",
 )
+
+opts <- get_opts()
+
+update_geom_defaults("text", list(family = opts$font))
 
 ### AUTO EXEC ------------------------------------------------------------------
 

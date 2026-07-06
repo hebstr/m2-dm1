@@ -80,7 +80,7 @@ dependencies = []
 
 [[packages]]
 name = "RcppArmadillo"
-version = "15.2.6-1"
+version = "15.4.0-1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
@@ -171,12 +171,12 @@ dependencies = []
 
 [[packages]]
 name = "bayestestR"
-version = "0.17.0"
+version = "0.18.1"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
-    { name = "insight", requirement = "(>= 1.4.1)" },
-    { name = "datawizard", requirement = "(>= 1.2.0)" },
+    { name = "insight", requirement = "(>= 1.5.0.6)" },
+    { name = "datawizard", requirement = "(>= 1.3.1)" },
 ]
 
 [[packages]]
@@ -549,7 +549,7 @@ dependencies = []
 
 [[packages]]
 name = "doBy"
-version = "4.7.1"
+version = "4.7.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
@@ -563,7 +563,6 @@ dependencies = [
     "MASS",
     "Matrix",
     "modelr",
-    "microbenchmark",
     "rlang",
     "purrr",
     "tibble",
@@ -987,7 +986,7 @@ dependencies = [
 [[packages]]
 name = "hebstr"
 version = "0.0.0.9000"
-source = { git = "https://github.com/hebstr/hebstr", sha = "5206ca98c0db0d9a44bdefb5028347e4c0b29030", branch = "main" }
+source = { git = "https://github.com/hebstr/hebstr", sha = "a0c0e904b57a045348a5414594b15c8e0c0fbe3e", branch = "main" }
 force_source = true
 dependencies = [
     "broom",
@@ -1110,7 +1109,7 @@ dependencies = [
 
 [[packages]]
 name = "insight"
-version = "1.5.0"
+version = "1.5.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = []
@@ -1333,13 +1332,6 @@ dependencies = [
 ]
 
 [[packages]]
-name = "microbenchmark"
-version = "1.5.0"
-source = { repository = "https://packagemanager.posit.co/cran/latest" }
-force_source = false
-dependencies = []
-
-[[packages]]
 name = "mime"
 version = "0.13"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
@@ -1437,13 +1429,13 @@ dependencies = []
 
 [[packages]]
 name = "parameters"
-version = "0.28.3"
+version = "0.29.2"
 source = { repository = "https://packagemanager.posit.co/cran/latest" }
 force_source = false
 dependencies = [
-    { name = "bayestestR", requirement = "(>= 0.17.0)" },
-    { name = "datawizard", requirement = "(>= 1.3.0)" },
-    { name = "insight", requirement = "(>= 1.4.2)" },
+    { name = "bayestestR", requirement = "(>= 0.18.1)" },
+    { name = "datawizard", requirement = "(>= 1.3.1)" },
+    { name = "insight", requirement = "(>= 1.5.1)" },
 ]
 
 [[packages]]
